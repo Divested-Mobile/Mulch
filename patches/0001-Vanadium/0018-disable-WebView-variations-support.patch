@@ -1,0 +1,38 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Daniel Micay <danielmicay@gmail.com>
+Date: Thu, 10 Dec 2020 10:09:18 -0500
+Subject: [PATCH] disable WebView variations support
+
+---
+ .../com/android/webview/chromium/WebViewChromiumAwInit.java   | 4 ----
+ .../webview/chromium/WebViewChromiumFactoryProvider.java      | 2 --
+ 2 files changed, 6 deletions(-)
+
+diff --git a/android_webview/glue/java/src/com/android/webview/chromium/WebViewChromiumAwInit.java b/android_webview/glue/java/src/com/android/webview/chromium/WebViewChromiumAwInit.java
+index abe9e0ec0849c..29a2b81fb15f6 100644
+--- a/android_webview/glue/java/src/com/android/webview/chromium/WebViewChromiumAwInit.java
++++ b/android_webview/glue/java/src/com/android/webview/chromium/WebViewChromiumAwInit.java
+@@ -199,10 +199,6 @@ public class WebViewChromiumAwInit {
+ 
+             AwBrowserProcess.configureChildProcessLauncher();
+ 
+-            // finishVariationsInitLocked() must precede native initialization so the seed is
+-            // available when AwFeatureListCreator::SetUpFieldTrials() runs.
+-            finishVariationsInitLocked();
+-
+             AwBrowserProcess.start();
+             AwBrowserProcess.handleMinidumpsAndSetMetricsConsent(true /* updateMetricsConsent */);
+ 
+diff --git a/android_webview/glue/java/src/com/android/webview/chromium/WebViewChromiumFactoryProvider.java b/android_webview/glue/java/src/com/android/webview/chromium/WebViewChromiumFactoryProvider.java
+index 3a4aa9f1ce3ed..937ec55e7ecba 100644
+--- a/android_webview/glue/java/src/com/android/webview/chromium/WebViewChromiumFactoryProvider.java
++++ b/android_webview/glue/java/src/com/android/webview/chromium/WebViewChromiumFactoryProvider.java
+@@ -493,8 +493,6 @@ public class WebViewChromiumFactoryProvider implements WebViewFactoryProvider {
+                 }
+             }
+ 
+-            mAwInit.startVariationsInit();
+-
+             mShouldDisableThreadChecking = shouldDisableThreadChecking(ctx);
+ 
+             setSingleton(this);

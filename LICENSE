@@ -1,0 +1,12 @@
+Below are the license mappings for all of the files found in this repository.
+All attempts have been made to ensure accuracy of the corresponding license files.
+If you've found an issue please file an issue or pull request.
+
+Android.mk - Apache-2.0 - https://github.com/LineageOS/android_external_chromium-webview
+CleanSpec.mk - Apache-2.0 - https://github.com/LineageOS/android_external_chromium-webview
+patches/
+	0001-Vanadium - GPL-2.0-only with exceptions - https://github.com/GrapheneOS/Vanadium
+	0002-LineageOS - Apache-2.0 - https://github.com/LineageOS/android_external_chromium-webview
+build-webview.sh - Apache-2.0 - https://github.com/LineageOS/scripts/tree/master/build-webview
+
+Please see the included LICENSE.* files for the corresponding full license texts.

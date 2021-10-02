@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Daniel Micay <danielmicay@gmail.com>
+Date: Wed, 3 Mar 2021 13:42:41 -0500
+Subject: [PATCH] enable user agent freeze by default
+
+---
+ third_party/blink/common/features.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/third_party/blink/common/features.cc b/third_party/blink/common/features.cc
+index 26d9c96deb7c0..e69f9c7bab3fe 100644
+--- a/third_party/blink/common/features.cc
++++ b/third_party/blink/common/features.cc
+@@ -167,7 +167,7 @@ const base::Feature kFreezePurgeMemoryAllPagesFrozen{
+ 
+ // Freezes the user-agent as part of https://github.com/WICG/ua-client-hints.
+ const base::Feature kReduceUserAgent{"ReduceUserAgent",
+-                                     base::FEATURE_DISABLED_BY_DEFAULT};
++                                     base::FEATURE_ENABLED_BY_DEFAULT};
+ 
+ // Enables the `sec-ch-ua-full` client hint to be sent along with the full user
+ // agent string in the HTTP request headers, as well as surfacing the full user

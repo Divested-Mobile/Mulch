@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: "Kevin F. Haggerty" <haggertk@lineageos.org>
+Date: Sun, 27 Dec 2020 09:42:54 -0700
+Subject: [PATCH] webview: Hard no to persistent histograms
+
+* It's probably some kind of bug somewhere that these are never
+  deleted, but they don't really add value to us in the first
+  place.
+* Stop eating 4MB every single time any app that uses webview
+  ever opens.
+* These were guarded by a feature check before
+  https://chromium.googlesource.com/chromium/src/+/b86102f2a243
+---
+ android_webview/browser/aw_field_trials.cc | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/android_webview/browser/aw_field_trials.cc b/android_webview/browser/aw_field_trials.cc
+index cdcee98e4a394..c5582ec79c3bf 100644
+--- a/android_webview/browser/aw_field_trials.cc
++++ b/android_webview/browser/aw_field_trials.cc
+@@ -11,9 +11,11 @@
+ #include "components/metrics/persistent_histograms.h"
+ 
+ void AwFieldTrials::SetUpFieldTrials() {
++#if 0
+   // Persistent histograms must be enabled as soon as possible.
+   base::FilePath metrics_dir;
+   if (base::PathService::Get(base::DIR_ANDROID_APP_DATA, &metrics_dir)) {
+     InstantiatePersistentHistograms(metrics_dir);
+   }
++#endif
+ }

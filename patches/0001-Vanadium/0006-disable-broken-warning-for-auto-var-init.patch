@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Daniel Micay <danielmicay@gmail.com>
+Date: Thu, 21 May 2020 14:07:54 -0400
+Subject: [PATCH] disable broken warning for auto var init
+
+---
+ build/config/compiler/BUILD.gn | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
+index bbf0417f880d8..17477848d85ad 100644
+--- a/build/config/compiler/BUILD.gn
++++ b/build/config/compiler/BUILD.gn
+@@ -338,7 +338,7 @@ config("compiler") {
+     }
+ 
+     if (is_clang) {
+-      cflags += [ "-ftrivial-auto-var-init=zero", "-enable-trivial-auto-var-init-zero-knowing-it-will-be-removed-from-clang" ]
++      cflags += [ "-ftrivial-auto-var-init=zero", "-enable-trivial-auto-var-init-zero-knowing-it-will-be-removed-from-clang", "-Wno-unused-command-line-argument" ]
+     }
+ 
+     # Linker warnings.
